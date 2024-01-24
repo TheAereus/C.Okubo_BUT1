@@ -13,22 +13,24 @@
 │                                                                                                      │
 │                                                                                                      │
 │                                                                                                      │
-│                                            1- Nombre de                                              │
-│                                               lettres : 
-                                            │
+│                 Joueur 1 : 
+                                    Joueur 2 : 
+                 │
+│          (1 pour changer le nom)                                    (2 pour changer le nom)          │
 │                                                                                                      │
-│                                            2- Nombre de                                              │
-│                                               jokers  : 
-                                            │
-│                                                                                                      │
-│                                                                                                      │
-│                                                                                                      │
-│                                             3- Retour                                                │
+│                                           Nombre de jokers                                           │
+│                                                  
+                                                   │
 │                                                                                                      │
 │                                                                                                      │
 │                                                                                                      │
+│                                           Nombre de lettres                                          │
+│                                                  
+                                                   │
 │                                                                                                      │
 │                                                                                                      │
+│                                             3- Continuer                                             │
+│                                               0- Retour                                              │
 │                                                                                                      │
 │                                                                                                      │
 │                                                                                                      │

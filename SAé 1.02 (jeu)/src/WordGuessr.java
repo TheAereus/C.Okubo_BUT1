@@ -1,27 +1,12 @@
 import extensions.File;
 class WordGuessr extends Program {
 
-    final File fichierMenu = new File("./ressources/menu.txt");
-    final File fichierParam = new File("./ressources/param.txt");
-
     Joueur NewJoueur(String nomJ){
         Joueur J = new Joueur();
         J.nom = nomJ;
         J.score = 0;
         J.nbJokerUtilise = 0;
         return J;
-    }
-
-    String convMaj(String mot){
-        String resultat = "";
-        for(int i=0; i<length(mot); i++){
-            if(charAt(mot, i) >= 'a' && charAt(mot, i) <= 'z'){
-                resultat += (char)(charAt(mot, i) - ('a' - 'A'));
-            } else {
-                resultat += charAt(mot, i);
-            }
-        }
-        return resultat;
     }
 
     String dernieresLettres(String mot, int nbLettres){
@@ -32,28 +17,52 @@ class WordGuessr extends Program {
         return equals(lettres, substring(mot, 0, length(lettres)));
     }
 
-    void attendre(int tpsAttente){
-        long t1 = getTime();
-        while((getTime() - t1) != tpsAttente){
-        }
-    }
-
-
     void afficherInterface(String ecranActuel){
         //Largeur: 104 charactères
         //Hauteur: 39 charactères
+        final File fichierMenu = new File("./ressources/menu.txt");
+        final File fichierParam = new File("./ressources/param.txt");
+        final File fichierInitJeu = new File("./ressources/initJeu.txt");
+        if(ecranActuel.equals("initJeu")){
+            int compteur = 1;
+            while(ready(fichierInitJeu)){
+                if(compteur == 16){
+                    println(readLine(fichierInitJeu) + joueur1.nom + readLine(fichierInitJeu) + joueur2.nom + readLine(fichierInitJeu));
+                } else
+                if(compteur == 20){
+                    println(readLine(fichierInitJeu) + nbParamJoker + readLine(fichierInitJeu));
+                } else
+                if(compteur == 25){
+                    println(readLine(fichierInitJeu) + nbParamLettres + readLine(fichierInitJeu));
+                }
+                else {
+                    println(readLine(fichierInitJeu));
+                    
+                }
+                compteur ++;
+            }
+        } else
         if(ecranActuel.equals("menu")){
             while(ready(fichierMenu)){
                 println(readLine(fichierMenu));
             }
         } else
         if(ecranActuel.equals("param")){
+            int compteur = 1;
+            String affValeurParam = "";
             while(ready(fichierParam)){
-                println(readLine(fichierParam));
+                if(compteur == 17){
+                    println(readLine(fichierParam) + nbParamLettres + readLine(fichierParam));
+                } else
+                if(compteur == 20){
+                    println(readLine(fichierParam) + nbParamJoker + readLine(fichierParam));
+                }
+                else {
+                    println(readLine(fichierParam));
+                }
+                compteur ++;
             }
-        } //else
-        // if(ecranActuel.equals("lb")){
-        // }
+        }
     }
 
     boolean checkEntreeNumerique(String entree){
@@ -75,58 +84,226 @@ class WordGuessr extends Program {
         return resultat;
     }
 
-    int boucleEntreeNav(String entree, int )
+    int boucleEntree(String ecran, int entree, int entreeMin, int entreeMax){
+        entree = StringToInt(readString());
+        while(entree < entreeMin || entree > entreeMax){
+            afficherInterface(ecran);
+            print("                         Votre entrée n'est pas valide! : ");
+            entree = StringToInt(readString());
+        }
+        return entree;
+    }
 
-    final String[] listeEcrans = new String[]{"quitter","menu","param","lb","jeu"};
+    void decalage(String[] liste, String chaine){
+        for(int i = length(liste)-1; i >= 1; i--){
+            liste[i] = liste[i-1];
+        }
+        liste[0] = chaine;
+    }
+
+    boolean checkMotFr(String mot){
+        File fichierMots = new File("./ressources/ListeMots.txt");
+        mot = toLowerCase(mot);
+        boolean resultat = false;
+        while(ready(fichierMots) && !resultat){
+            if(equals(readLine(fichierMots), mot)){
+                resultat = true;
+            }
+        }
+        return resultat;
+    }
+
+    void foncJeu(){
+        int entreeInt = -1;
+        while (entreeInt!=0){
+            afficherInterface("initJeu");
+            print("                                                Entrée : ");
+            entreeInt = boucleEntree("menu", entreeInt, 0, 3);
+            if(entreeInt == 1 || entreeInt == 2){
+                afficherInterface("initJeu");
+                print("             Entrez le nom du joueur " + entreeInt + " (5 charactères) : ");
+                String nom = readString();
+                while(length(nom) != 5){
+                    afficherInterface("initJeu");
+                    print("                   Le nom doit faire 5 charactères : ");
+                    nom = readString();
+                }
+                if(entreeInt == 1){
+                    joueur1.nom = toUpperCase(nom);
+                } else
+                if(entreeInt == 2){
+                    joueur2.nom = toUpperCase(nom);
+                }
+            } else
+            if(entreeInt == 3){
+                boolean fini = false;
+                String[] listeMots = new String[18];
+                int tourJoueur = 1;
+                while(!fini){
+                    final File fichierBasJeu = new File("./ressources/partieBasseJeu.txt");
+                    for(int i = 0; i < 104; i++){
+                        print("⎯");
+                    }
+                    println();
+                    for(int i = 17; i >= 0; i--){
+                        int nbEspaces = 102;
+                        if(listeMots[i] == null){
+                            print("│");
+                            for(int l = 0; l < nbEspaces; l++){
+                                print(" ");
+                            }
+                            print("│");
+                        } else {
+                            nbEspaces -= length(listeMots[i]);
+                            print("│");
+                            for(int l = 0; l < nbEspaces/2; l++){
+                                print(" ");
+                            }
+                            print(listeMots[i]);
+                            if(length(listeMots[i])%2==1){
+                                nbEspaces ++;
+                            }
+                            for(int l = 0; l < nbEspaces/2; l++){
+                                print(" ");
+                            }
+                            print("│");
+                        }
+                        println();
+                    }
+                    int compteur = 1;
+                    while(ready(fichierBasJeu)){
+                        println(readLine(fichierBasJeu));
+                        if(tourJoueur == 1 && compteur == 1){
+                            println(readLine(fichierBasJeu) + joueur1.nom + readLine(fichierBasJeu));
+                        } else
+                        if(tourJoueur == 2 && compteur == 1){
+                            println(readLine(fichierBasJeu) + joueur2.nom + readLine(fichierBasJeu));
+                        }
+                        compteur ++;
+                    }
+                    if(syl == ""){
+                        print("                                      Entrez votre mot : ");
+                    }
+                    else{
+                        print("                         Entrez un mot commenceant en " + syl + " : ");
+                    }
+                    String mot = readString();
+                    if(equals(toLowerCase(mot), "joker")){
+                        if(tourJoueur == 1){
+                            if(joueur1.nbJokerUtilise >= nbParamJoker){
+                                println("                                Pas de joker disponible !");
+                                mot = "";
+                            } 
+                            else{
+                                joueur1.nbJokerUtilise ++;
+                                boolean motAleatoireTrouve = false;
+                                while(!motAleatoireTrouve){
+                                    File motsTemp = new File("./ressources/ListeMots.txt");
+                                    while(ready(motsTemp) && !motAleatoireTrouve){
+                                        mot = readLine(motsTemp);
+                                        double chiffreAleatoire = random();
+                                        if(chiffreAleatoire <= 0.0001){
+                                            motAleatoireTrouve = true;
+                                        }
+                                    }
+                                }
+                            }
+                        } else
+                        if(tourJoueur == 2){
+                            if(joueur2.nbJokerUtilise >= nbParamJoker){
+                                println("                                     Pas de joker disponible !");
+                                mot = "";
+                            } 
+                            else{
+                                joueur2.nbJokerUtilise ++;
+                                boolean motAleatoireTrouve = false;
+                                while(!motAleatoireTrouve){
+                                    File motsTemp = new File("./ressources/ListeMots.txt");
+                                    while(ready(motsTemp) && !motAleatoireTrouve){
+                                        mot = readLine(motsTemp);
+                                        double chiffreAleatoire = random();
+                                        if(chiffreAleatoire <= 0.01){
+                                            motAleatoireTrouve = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else 
+                    if(length(mot) < nbParamLettres || !checkMotFr(mot) || !comparerPremieresLettres(mot, syl)){
+                        if(tourJoueur == 1){
+                            println("\n\n                                   Mot invalide, " + joueur1.nom + " a perdu");
+                        } else
+                        if(tourJoueur == 2){
+                            println("\n\n                                   Mot invalide, " + joueur2.nom + " a perdu");
+                        }
+                        fini = true;
+                    }
+                    if(!fini && !equals(mot, "")){
+                        decalage(listeMots, mot);
+                        if(tourJoueur == 1){
+                            joueur1.score += length(mot);
+                            tourJoueur = 2;
+                        } else
+                        if(tourJoueur == 2){
+                            joueur2.score += length(mot);
+                            tourJoueur = 1;
+                        }
+                    }
+                    syl = dernieresLettres(mot, nbParamLettres);
+                }
+            }
+        }
+    }
+
+    int foncMenu(){
+        int entreeInt = 0;
+        afficherInterface("menu");
+        print("                                                Entrée : ");
+        entreeInt = boucleEntree("menu", entreeInt, 0, 2);
+        return entreeInt;
+    }
+
+    void foncParam(){
+        int entreeInt = -1;
+        while(entreeInt != 3){
+            afficherInterface("param");
+            print("                                                Entrée : ");
+            entreeInt = boucleEntree("param", entreeInt, 1, 3);
+            if(entreeInt == 1){
+                afficherInterface("param");
+                print("           Entrez la valeur que vous souhaitez choisir : ");
+                entreeInt = boucleEntree("param", entreeInt, 1, 9);
+                nbParamLettres = entreeInt;
+            } else
+            if(entreeInt == 2){
+                afficherInterface("param");
+                print("           Entrez la valeur que vous souhaitez choisir : ");
+                entreeInt = boucleEntree("param", entreeInt, 1, 9);
+                nbParamJoker = entreeInt;
+            }
+        }
+    }
+
+    int nbParamJoker = 2;
+    int nbParamLettres = 2;
+    Joueur joueur1 = NewJoueur("XXXXX");
+    Joueur joueur2 = NewJoueur("XXXXX");
+    String syl = "";
 
     void algorithm(){
-        int nbJoker
         boolean execution = true;
         while(execution){
-            afficherInterface(listeEcrans[1]);
-            print("                                                Entrée : ");
-            String entreeJoueur = readString();
-            int entreeInt = StringToInt(entreeJoueur);
-            while(entreeInt == -1 || entreeInt > 3){
-                afficherInterface(listeEcrans[1]);
-                print("                         Votre entrée n'est pas valide! : ");
-                entreeJoueur = readString();
-                entreeInt = StringToInt(entreeJoueur);
-            }
-            if(entreeInt == 0){
+            int prochainEcran = foncMenu();
+            if(prochainEcran == 0){
                 execution = false;
+            } else
+            if(prochainEcran == 1){
+                foncJeu();
+            } else
+            if(prochainEcran == 2){
+                foncParam();
             }
-            afficherInterface(listeEcrans[entreeInt]);
         }
-        
-
-        //boolean fini = false;
-        //print("Entrez le nombre de lettres à prendre a chaque fin de mot : ");
-        //int nbLettres = readInt();
-        //attendre(5000);
-        //print("\nJoueur 1, entrez votre mot : ");
-        //String EntreeJoueur = convMaj(readString());
-        //while(!fini){
-        //    String syl = dernieresLettres(EntreeJoueur, nbLettres);
-        //    print("Joueur 2, entrez un mot commençant en \"" + syl + "\" : ");
-        //    EntreeJoueur = convMaj(readString());
-        //    if(!comparerPremieresLettres(EntreeJoueur, syl)){
-        //        fini = true;
-        //        println("Joueur 2 a perdu!");
-        //    } else {
-        //        syl = dernieresLettres(EntreeJoueur, nbLettres);
-        //        print("Joueur 1, entrez un mot commençant en \"" + syl + "\" : ");
-        //        EntreeJoueur = convMaj(readString());
-        //        if(!comparerPremieresLettres(EntreeJoueur, syl)){
-        //            fini = true;
-        //            println("Joueur 1 a perdu!");
-        //        }
-        //    }
-        //}
     }
 }
-
-
-//Nom joueurs, points, leaderboard, comparaison de mots français (peut etre autres langues), graphiques, pas de doublons, idée de mot sur perte, forcément une terminaison/alternative, joker
-//Si joker > 2 alors le joueur ne peut pas apparaitre sur le leaderboard
-//PEUT ETRE: countdown, mode syllabes

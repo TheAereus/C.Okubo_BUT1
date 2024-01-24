@@ -10938,6 +10938,7 @@ joindre
 joint
 joints
 jointure
+joker
 joli
 jolie
 joliment

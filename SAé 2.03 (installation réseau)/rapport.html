@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Rapports S2.03 I.S.R</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="rapport.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Rapports S2.03 I.S.R</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#rapport-semaine-6" id="toc-rapport-semaine-6">Rapport
+semaine 6</a>
+<ul>
+<li><a href="#création-dune-machine-dune-virtuel-debian."
+id="toc-création-dune-machine-dune-virtuel-debian.">1 - Création d’une
+machine d’une virtuel Debian.</a></li>
+<li><a href="#linstallation-de-debian."
+id="toc-linstallation-de-debian.">2 - L’installation de Debian.</a></li>
+<li><a href="#configuration-de-debian."
+id="toc-configuration-de-debian.">3 - Configuration de Debian.</a></li>
+<li><a href="#lhistoire-de-debian" id="toc-lhistoire-de-debian">4 -
+L’histoire de Debian</a></li>
+<li><a href="#la-maintenance" id="toc-la-maintenance">5 - La
+maintenance</a></li>
+<li><a href="#nom-générique-nom-de-code-et-version"
+id="toc-nom-générique-nom-de-code-et-version">6 - Nom générique, nom de
+code et version</a></li>
+<li><a href="#installation-automatique-et-pré-configuration"
+id="toc-installation-automatique-et-pré-configuration">6 - Installation
+automatique et pré-configuration</a></li>
+</ul></li>
+<li><a href="#rapport-semaine-8" id="toc-rapport-semaine-8">Rapport
+semaine 8</a>
+<ul>
+<li><a href="#préliminaires." id="toc-préliminaires.">1 -
+Préliminaires.</a></li>
+</ul></li>
+<li><a href="#rapport-semaine-10" id="toc-rapport-semaine-10">Rapport
+semaine 10</a>
+<ul>
+<li><a href="#préliminaires.-1" id="toc-préliminaires.-1">1 -
+Préliminaires.</a></li>
+<li><a href="#linstallation-de-gitea."
+id="toc-linstallation-de-gitea.">2 - L’installation de Gitea.</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="rapport-semaine-6">Rapport semaine 6</h1>
+<hr />
+<p><em>Dans cette partie de rapport, nous parlerons de comment
+fonctionne l’installation de Debian sur une machine virtuel</em></p>
+<h2 id="création-dune-machine-dune-virtuel-debian.">1 - Création d’une
+machine d’une virtuel Debian.</h2>
+<hr />
+<p><em>Pour l’installation de Debian nous avons eu besoin de créer une
+machine virtuel.</em></p>
+<p>Pour le bon fonctionnement de la machine nous avons besoin de
+caractéristique spécifique ou minimum :</p>
+<ul>
+<li>Nom de la machine dans VirtualBox : sae203</li>
+<li>Dossier de la machine :
+/usr/local/virtual_machine/infoetu/login</li>
+<li>Type : Linux</li>
+<li>Version : Debian ou Debian 11 en 64-bit</li>
+<li>Mémoire vive (RAM) : 2048 Mo pour être à l’aise à l’usage.</li>
+<li>Disque dur : 20 Go entier (une seule partition)</li>
+<li>Laisser le reste par défaut.</li>
+</ul>
+<p><em>Pour créer notre machine virtuel nous avons utilisez
+l’application VM Virtual Box.</em></p>
+<p>Maintenant l’étape de la création pour cela il faut appuyer sur le
+bouton <strong>Nouvelle</strong>.<br />
+Puis entrer les information demander.<br />
+<img src="img/Capture1.png" /></p>
+<p>Puis il faut allouer la mémoire vive. <img
+src="img/Capture2.png" /></p>
+<p>Et enfin l’allocation de la taille du disque dur.<br />
+<img src="img/Capture3.png" /></p>
+<p>Et pour reste on a laisser les paramètre de défaut.<br />
+Nous avons maintenant une machines prête a l’installation de
+<strong>Debian 64-bit</strong>.</p>
+<h3 id="que-signifie-64-bit-dans-debian-64-bits">1 - Que signifie
+“64-bit” dans “Debian 64-bits ?</h3>
+<p>Dans l’architecture informatique, les entiers 64 bits, les adresses
+mémoire ou d’autres unités de données sont ceux qui ont une largeur de
+64 bits. De plus, les processeurs et ALU 64 bits sont ceux qui sont
+basés sur des registres de processeur, des bus d’adresses ou des bus de
+données de cette taille.</p>
+<h3 id="quelle-est-la-configuration-réseau-utilisée-par-défaut">2 -
+Quelle est la configuration réseau utilisée par défaut ?</h3>
+<p>La configuration réseau utilisé par défaut est : Intel PRO/1000 MT
+Desktop (NAT)<br />
+<img src="img/Capture4.png" /></p>
+<h3
+id="quel-est-le-nom-du-fichier-xml-contenant-la-configuration-de-votre-machine">3
+- Quel est le nom du fichier XML contenant la configuration de votre
+machine ?</h3>
+<p>Dans le fichier contenu dans les dossier de la machine virtuel :
+sae203.vbox-prev</p>
+<h3
+id="sauriez-vous-le-modifier-directement-ce-fichier-pour-mettre-2-processeurs-à-votre-machine">4
+- Sauriez-vous le modifier directement ce fichier pour mettre 2
+processeurs à votre machine ?</h3>
+<p>Pour modifier le nombre <strong><em>cpu</em></strong> il faut aller a
+la ligne de <strong>CPU count=“1”</strong> et remplacer le 2 par le
+nombre de processeur voulu.<br />
+Pour le modifier on a utiliser des commandes système car on n’arrivé pas
+a modifier le fichier on a copié son contenu dans un fichier texte, puis
+modifier la ligne requise et enfin on a forcé le contenu du fichier
+texte dans le fichier sae203.vbox-prev<br />
+<img src="img/Capture5.png" /><br />
+il existe aussi un autre moyen de changer le nombre de cpu en allant
+dans les paramètres de la machine virtuel depuis VM VirutalBox.<br />
+<img src="img/Capture6.png" /></p>
+<h2 id="linstallation-de-debian.">2 - L’installation de Debian.</h2>
+<hr />
+<p>Pour l’installation de Debian nous avions des paramètre a respecter
+:</p>
+<ul>
+<li>Nom de la machine (à l’installation) : serveur</li>
+<li>Domaine : Laisser vide</li>
+<li>Pays/langue : France</li>
+<li>Miroir : http://debian.polytech-lille.fr</li>
+<li>Proxy si nécessaire : http://cache.univ-lille.fr:3128</li>
+<li>Compte administrateur : root / root</li>
+<li>Un Compte utilisateur : User / user / user</li>
+<li>Partition : 1 seule partition recouvrant le disque entier</li>
+<li>Sélection des logiciels de démarrage (Paquetages logiciels à
+préinstaller pour se simplifier la vie par la suite) :</li>
+</ul>
+<ol type="1">
+<li>environnement de bureau Debian</li>
+<li>MATE</li>
+<li>serveur web</li>
+<li>serveur ssh</li>
+<li>utilitaire usuels du système</li>
+</ol>
+<p>Maintenant la machine créer nous allons l’avons démarrer et VM
+VirtualBox nous a demander d’ajouter un fichier iso.<br />
+<img src="img/Capture7.png" /></p>
+<p>Une fois cela fait nous pouvons enfin procéder a l’installation de
+Debian.<br />
+Nous avons choisit l’installation graphique.<br />
+<img src="img/Capture8.png" /></p>
+<p>La première étape est le choix du nom de la machine.<br />
+<img src="img/Capture9.png" /></p>
+<p>La deuxième est le choix du mot de passe de l’user root.<br />
+<img src="img/Capture10.png" /></p>
+<p>Ensuite le choix du miroir.<br />
+<img src="img/Capture11.png" /></p>
+<p>Et pout finir le choix des logiciel a installer. <img
+src="img/Capture12.png" /></p>
+<h3 id="quest-ce-quun-fichier-iso-bootable">1 - Qu’est-ce qu’un fichier
+iso bootable ?</h3>
+<p>Un fichier iso bootable est un fichier image créé à partir d’un CD ou
+d’un DVD il contient les informations nécessaire pour démarrer un
+ordinateur.<br />
+Iso : image CD</p>
+<h3 id="quest-ce-que-mate-gnome">2 - Qu’est-ce que MATE ? GNOME ?</h3>
+<p>Mate est un environnement de bureau libre utilisant (dans un premier
+temps) la boîte à outils GTK+ 3.x et destiné aux systèmes d’exploitation
+apparentés à UNIX.<br />
+Gnome à l’origine un acronyme pour GNU Network Object Model Environnent,
+est un environnement de bureau libre et open-source pour Linux et
+d’autres systèmes d’exploitation de type Unix[11].</p>
+<h3 id="quest-ce-quun-serveur-web">3 - Qu’est-ce qu’un serveur web
+?</h3>
+<p>Tout type de serveur qui permet de diffuser des contenues Web sur
+Internet ou Intranet</p>
+<h3 id="quest-quun-serveur-ssh">4 - Qu’est qu’un serveur ssh ?</h3>
+<p>SSH™ (ou Secure SHell) est un protocole qui facilite les connexions
+sécurisées entre deux systèmes à l’aide d’une architecture
+client/serveur et permet aux utilisateurs de se connecter à distance à
+des systèmes hôte de serveurs.</p>
+<h3 id="quest-quun-serveur-mandataire">5 - Qu’est qu’un serveur
+mandataire ?</h3>
+<p>Un serveur mandataire filtre les sites Web que vous consultez. Il
+reçoit les requêtes de votre navigateur pour récupérer les pages Web
+demandées avec leurs éléments et, dans le respect des règles édictées,
+décide de vous les transmettre ou non.</p>
+<h2 id="configuration-de-debian.">3 - Configuration de Debian.</h2>
+<hr />
+<h3 id="mettre-luser-en-droit-sudo.">Mettre l’user en droit sudo.</h3>
+<p>Passer en mode console : Ctrl + Alt + F1.<br />
+Se connecter en root en utilisant les paramètre utiliser lors de
+l’installation de Debian dans notre cas: login = root et mot de passe
+root<br />
+Puis ajouter le groupe sudo à votre principal grâce a la commande
+<strong>$ sudo adduser “user” -G sudo</strong></p>
+<h3 id="installation-des-suppléments-invités.">Installation des
+suppléments invités.</h3>
+<p>Pour ajouter les suppléments invités, nous allons devoir compiler des
+programmes. Il nous faut donc des outils de compilation et les fichiers
+d’en-têtes du noyaux linux utilisé :</p>
+<p>Insérer le cd des suppléments : Périphériques › Insérer l’image CD
+des additions invités…<br />
+Monter le CD avec la commande <strong>sudo mount /dev/cdrom
+/mnt</strong><br />
+Installer les suppléments en utilisant <strong>sudo
+/mnt/VBoxLinuxAdditions.run</strong><br />
+Puis rebooter votre machine est vous avez maintenant une machine
+utilisable.</p>
+<h3
+id="comment-peut-on-savoir-à-quels-groupes-appartient-lutilisateur-user">1
+- Comment peut-on savoir à quels groupes appartient l’utilisateur user
+?</h3>
+<p>Il suffit d’utiliser la commande compgen -u</p>
+<h3 id="a-quoi-servent-les-suppléments-invités">2 - A quoi servent les
+suppléments invités ?</h3>
+<p>Il permet l’intégration du pointeur de la souri, et la création de
+Dossiers partagé.</p>
+<h2 id="lhistoire-de-debian">4 - L’histoire de Debian</h2>
+<hr />
+<p><em>Avant d’utiliser Debian en profondeur, une petite introduction a
+son histoire s’impose !</em></p>
+<h3
+id="question-1.-quest-ce-que-le-projet-debian-doù-vient-le-nom-debian">Question
+1. Qu’est-ce que le Projet Debian ? D’où vient le nom Debian ?</h3>
+<p><a href="https://debian-facile.org/doc:debian">Debian</a> est un
+système d’exploitation <strong>GNU/Linux</strong> présentant deux
+caractéristiques principales : - C’est la distribution
+<strong>libre</strong> qui offre le plus de stabilité pour les outils
+GNU et le noyau <strong>Linux</strong> . - C’est une distribution
+<strong>non commerciale</strong> suffisamment crédible pour concurrencer
+les distributions commerciales .</p>
+<p>GNU/Linux Debian est également un système d’exploitation
+multi-plates-formes.</p>
+<p>La <a
+href="https://www.debian.org/doc/manuals/project-history/project-history.fr.txt">prononciation
+officielle</a> de Debian est <strong>« déb-yann »</strong>. Le nom tire
+son origine des prénoms du créateur de Debian, <strong>Ian
+Murdock</strong>, et de son épouse, <strong>Debra</strong>.</p>
+<h2 id="la-maintenance">5 - La maintenance</h2>
+<hr />
+<h3
+id="question-2.-il-existe-3-durées-de-prise-en-charge-support-de-ces-versions-la-durée-minimale-la-durée-en-support-long-terme-lts-et-la-durée-en-support-long-terme-étendue-elts.-quelle-sont-les-durées-de-ces-prises-en-charge">Question
+2. Il existe 3 durées de prise en charge (support) de ces versions : la
+durée minimale, la durée en support long terme (LTS) et la durée en
+support long terme étendue (ELTS). Quelle sont les durées de ces prises
+en charge ?</h3>
+<p>Effectivement il existe <strong>3 durées de prise en charge</strong>
+d’une version de Debian avec chacun leur type de version :</p>
+<ul>
+<li><strong>Durée minimal</strong>, prise en charge environs <strong>3
+ans</strong>.</li>
+<li><a href="https://wiki.debian.org/fr/LTS">LTS</a> (<em>support long
+terme</em>), prit en charge au moins <strong>5 ans</strong>.</li>
+<li>Et enfin, <a href="https://wiki.debian.org/fr/LTS/Extended">ELTS</a>
+(<em>support long terme étendue</em>), prit en charge durant <strong>10
+ans</strong>.</li>
+</ul>
+<h3
+id="question-3.-pendant-combien-de-temps-les-mises-à-jour-de-sécurité-seront-elles-fournies">Question
+3. Pendant combien de temps les mises à jour de sécurité seront-elles
+fournies ?</h3>
+<p><a
+href="https://www.debian.org/security/faq.fr.html#lifespan">L’équipe en
+charge de la <strong>sécurité</strong></a> essaye de prendre en charge
+la distribution <a
+href="https://www.debian.org/releases/stable/">stable</a> environ
+<strong>une année</strong> après que la version stable suivante a été
+publiée, sauf lorsqu’une autre distribution stable est publiée la même
+année. Il n’est <strong>pas possible de prendre en charge trois
+distributions,</strong> c’est déjà bien assez difficile avec deux.
+<br/></p>
+<h2 id="nom-générique-nom-de-code-et-version">6 - Nom générique, nom de
+code et version</h2>
+<hr />
+<h3
+id="question-4.-combien-de-version-au-minimum-sont-activement-maintenues-par-debian-donnez-leur-nom-générique-les-types-de-distribution.">Question
+4. Combien de version au minimum sont activement maintenues par Debian ?
+Donnez leur nom générique (= les types de distribution).</h3>
+<p>Comme vu précédemment <strong>différentes versions</strong> sont
+activement maintenues par Debian, il y a toujours <strong>au moins trois
+versions</strong> activement entretenues : <a
+href="https://www.debian.org/releases/stable/">“stable”</a>, <a
+href="https://www.debian.org/releases/testing/">“testing”</a> et <a
+href="https://www.debian.org/releases/sid/">“unstable”</a>.
+<br/><br/></p>
+<h3
+id="question-5.-chaque-distribution-majeur-possède-un-nom-de-code-différent.-par-exemple-la-version-majeur-actuelle-debian-12-se-nomme-bookworm.-doù-viennent-les-noms-de-code-données-aux-distributions">Question
+5. Chaque distribution majeur possède un nom de code différent. Par
+exemple, la version majeur actuelle (Debian 12) se nomme bookworm. D’où
+viennent les noms de code données aux distributions ?</h3>
+<p>Jusqu’ici les <a
+href="https://www.debian.org/doc/manuals/debian-faq/ftparchives.fr.html#codenames">noms
+de code</a> proviennent des personnages des films « <a
+href="https://fr.wikipedia.org/wiki/Toy_Story">Toy Story</a> » par
+Pixar. Voici un <strong>tableau des noms</strong> de code utilisé
+jusqu’à présent, ainsi que leurs signification :</p>
+<table>
+<colgroup>
+<col style="width: 41%" />
+<col style="width: 41%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Version Debian</th>
+<th style="text-align: center;">Nom</th>
+<th style="text-align: center;">Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Debian 1.1</td>
+<td style="text-align: center;"><em>buzz</em></td>
+<td style="text-align: center;">est le cosmonaute Buzz Lightyear</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Debian 1.2</td>
+<td style="text-align: center;"><em>rex</em></td>
+<td style="text-align: center;">est le tyrannosaure</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Debian 1.3</td>
+<td style="text-align: center;"><em>bo</em></td>
+<td style="text-align: center;">est Bo Peep, la bergère</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Debian 2.0</td>
+<td style="text-align: center;"><em>hamm</em></td>
+<td style="text-align: center;">est la tirelire en forme de cochon</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Debian 2.1</td>
+<td style="text-align: center;"><em>slink</em></td>
+<td style="text-align: center;">est Slinky Dog, le chien</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Debian 2.2</td>
+<td style="text-align: center;"><em>potato</em></td>
+<td style="text-align: center;">est bien sûr, Mr. Patate</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Debian 3.0</td>
+<td style="text-align: center;"><em>woody</em></td>
+<td style="text-align: center;">est le cowboy</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Debian 3.1</td>
+<td style="text-align: center;"><em>sarge</em></td>
+<td style="text-align: center;">est le sergent de l’armée de plastique
+vert</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Debian 4.0</td>
+<td style="text-align: center;"><em>etch</em></td>
+<td style="text-align: center;">est l’ardoise magique
+(Etch-a-Sketch)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Debian 5.0</td>
+<td style="text-align: center;"><em>lenny</em></td>
+<td style="text-align: center;">est la paire de jumelles</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Debian 6</td>
+<td style="text-align: center;"><em>squeeze</em></td>
+<td style="text-align: center;">est le nom des extraterrestres à 3
+yeux</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Debian 7</td>
+<td style="text-align: center;"><em>wheezy</em></td>
+<td style="text-align: center;">est le nom du manchot au nœud papillon
+rouge</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Debian 8</td>
+<td style="text-align: center;"><em>jessie</em></td>
+<td style="text-align: center;">est l’écuyère</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Debian 9</td>
+<td style="text-align: center;"><em>stretch</em></td>
+<td style="text-align: center;">est le nom de la pieuvre avec des
+ventouses sur ses tentacules.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Debian 10</td>
+<td style="text-align: center;"><em>buster</em></td>
+<td style="text-align: center;">était le chien de compagnie d’Andy.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Debian 11</td>
+<td style="text-align: center;"><em>bullseye</em></td>
+<td style="text-align: center;">était le cheval de bois de Woody.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Debian 12</td>
+<td style="text-align: center;"><em>bookworm</em></td>
+<td style="text-align: center;">était un ver de terre vert équipé d’un
+flash et qui adore lire des livres.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Debian 13</td>
+<td style="text-align: center;"><em>trixie</em></td>
+<td style="text-align: center;">était un triceratops bleu en
+plastique</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Futur Debian</td>
+<td style="text-align: center;"><em>sid</em></td>
+<td style="text-align: center;">est le garçon des voisins qui casse tous
+les jouets.</td>
+</tr>
+</tbody>
+</table>
+<p><br/><br/></p>
+<h3
+id="question-6.-lun-des-atouts-de-debian-fut-le-nombre-darchitecture-processeurs-officiellement-prises-en-charge.-combien-et-lesquelles-sont-prises-en-charge-par-la-version-bullseye">Question
+6. L’un des atouts de Debian fut le nombre d’architecture (=
+processeurs) officiellement prises en charge. Combien et lesquelles sont
+prises en charge par la version Bullseye ?</h3>
+<p><a href="https://www.debian.org/releases/bullseye/">Debian 11</a>
+(<em>Bullseye</em>) prend en charge de <strong>nombreuses
+architecture</strong>, voici ci-dessous la liste des architectures
+officiellement prises en charge par Debian 11 :</p>
+<ul>
+<li>PC
+<ul>
+<li>32 bits (i386)</li>
+<li>64 bits (amd64)</li>
+</ul></li>
+<li>ARM
+<ul>
+<li>64 bits (arm64)</li>
+<li>EABI (armel)</li>
+<li>ARMv7 (ARM avec unité de calcul flottant, armhf)</li>
+</ul></li>
+<li>MIPS
+<ul>
+<li>MIPS petit-boutiste (mipsel)</li>
+<li>MIPS 64 bits petit-boutiste (mips64el)</li>
+</ul></li>
+<li>PowerPC 64 bits petit-boutiste (ppc64el)</li>
+<li>IBM System z (s390x) <br/><br/></li>
+</ul>
+<h3 id="questions-7.-première-version-avec-un-nom-de-code">Questions 7.
+Première version avec un nom de code</h3>
+<ul>
+<li><h4 id="quelle-a-était-le-premier-nom-de-code-utilisé">Quelle a
+était le premier nom de code utilisé ?</h4>
+Le <strong>premier</strong> nom de code utilisé était <a
+href="https://wiki.debian.org/fr/DebianBuzz">buzz</a>, voir le tableau
+de la <a
+href="#question-5.-chaque-distribution-majeur-possède-un-nom-de-code-différent.-par-exemple-la-version-majeur-actuelle-debian-11-se-nomme-bullseye.-doù-viennent-les-noms-de-code-données-aux-distributions">Questions
+5</a>.</li>
+<li><h4 id="quand-a-t-il-été-annoncé">Quand a-t-il été annoncé ?</h4>
+La <a
+href="https://wiki.debian.org/fr/Debihttps://wiki.debian.org/fr/DebianBuzzanBuzz">date</a>
+d’annonce de la première version de Debian était le <strong>17 juin
+1996</strong>.</li>
+<li><h4
+id="quelle-était-le-numéro-de-version-de-cette-distribution">Quelle
+était le numéro de version de cette distribution ?</h4>
+<strong>Debian 1.1</strong> était effectivement la <strong>première
+version</strong> de Debian, voir le tableau de la <a
+href="#question-5.-chaque-distribution-majeur-possède-un-nom-de-code-différent.-par-exemple-la-version-majeur-actuelle-debian-11-se-nomme-bullseye.-doù-viennent-les-noms-de-code-données-aux-distributions">Questions
+5</a>. <br/><br/></li>
+</ul>
+<h3 id="questions-8.-dernière-nom-de-code-attribué">Questions 8.
+Dernière nom de code attribué</h3>
+<ul>
+<li><h4 id="quel-est-le-dernier-nom-de-code-annoncée-à-ce-jour">Quel est
+le dernier nom de code annoncée à ce jour ?</h4>
+A ce jour, la dernière version “<em>utilisable</em>”, bien qu’instable,
+est <a href="https://wiki.debian.org/fr/DebianTrixie">trixie</a>.</li>
+<li><h4 id="quand-a-t-il-été-annoncé-1">Quand a-t-il été annoncé ?</h4>
+Elle a donc était annoncée le <strong><em>8 novembre
+2020</em></strong>.</li>
+<li><h4 id="quelle-est-la-version-de-cette-distribution">Quelle est la
+version de cette distribution ?</h4>
+La dernière version, représenté par <em>trixie</em> est <strong>Debian
+13</strong>.</li>
+</ul>
+<h2 id="installation-automatique-et-pré-configuration">6 - Installation
+automatique et pré-configuration</h2>
+<hr />
+<h3 id="introduction">Introduction</h3>
+<p><em>Maintenant que nous avant une connaissance accrue de Debian, et
+que l’on sait l’installer et l’utiliser. Il est intéressant de se
+pencher sur le déploiement a grande échelle de ce système
+d’exploitation.</em></p>
+<p>Afin d’<a
+href="https://www.debian.org/releases/stable/amd64/apb.fr.html">automatiser
+l’installation</a>, il nous faut utiliser un “<em>.iso</em>” différent
+et d’autres fichiers en plus.</p>
+<figure>
+<img src="img/Capture14.png"
+alt="Fichiers nécessaires à l’installation" />
+<figcaption aria-hidden="true">Fichiers nécessaires à
+l’installation</figcaption>
+</figure>
+<p>Ici le fichier de configuration automatisée pour une Debian (et ses
+dérivées) est le plus<br />
+important. Il est souvent nommé <strong>preseed.cfg</strong>, il est
+capable de faire s’executer <strong>certaine commandes
+d’installations</strong> automatiques a Debian.</p>
+<figure>
+<img src="img/Capture15.png" alt="Contenu du fichier pressed.cfg" />
+<figcaption aria-hidden="true">Contenu du fichier
+pressed.cfg</figcaption>
+</figure>
+<h3 id="premiere-installation">Premiere installation</h3>
+<p>On peut alors lancer l’installation d’une <strong>nouvelle
+machine</strong> à partir de Debian, et de des fichiers d’installations
+personnalisés. <img src="img/Capture16.png" alt="Installation" />
+L’installation étant déjà <strong>configurée</strong>, <strong>aucune
+intéraction</strong> avec l’utilisateur n’est nécessaire, l’installation
+est bien <strong>automatique</strong>. <img src="img/Capture17.png"
+alt="Installation automatiques" /> Mais, cette installation ne comporte
+aucune i<strong>nterface graphique</strong>, ni aucun
+<strong>outil</strong> dont nous avant besoin. Nous devrons alors
+modifier le fichiers <strong>pressed.cfg</strong> pour correspondre à
+nos besoins.</p>
+<h3 id="utilisateurs">Utilisateurs</h3>
+<p>Certains utilisateurs sont déja créer et configurés grace à
+<strong>pressed.cfg</strong>.</p>
+<figure>
+<img src="img/Capture18.png" alt="Utilisateur déjà créé" />
+<figcaption aria-hidden="true">Utilisateur déjà créé</figcaption>
+</figure>
+<p>On peut vouloir ajouter les droits administrateurs à un utilisateur,
+les droits “<strong>sudo</strong>”, représenté par un groupe
+d’utilisateur ayant ces droits. Il nous suffit donc de rajouter
+<strong><em>sudo</em></strong> dans les groupes de déja configurés.</p>
+<p>La ligne :</p>
+<pre><code>d-i passwd/user-default-groups string audio cdrom video</code></pre>
+<p>Devient :</p>
+<pre><code>d-i passwd/user-default-groups string audio cdrom video sudo</code></pre>
+<h3 id="environnement-graphique">Environnement graphique</h3>
+<p><em>Cet affichage en ligne pourrait paraitre hostère pour un
+utilisateur qui n’est pas informaticien, c’est alors logique que l’on
+cherche à rajouter un environnement graphique.</em></p>
+<p>Debian permet d’être configuré a l’avance avec un environnement
+graphique, ici on va utiliser <strong>MATE</strong>. En utilisant la
+commande <a
+href="https://doc.ubuntu-fr.org/tasksel"><strong><em>tasksel</em></strong></a>,
+qui est une application d’installation de logiciels faisant partie
+intégrante de l’installeur Debian. <strong><em>Tasksel</em></strong>
+regroupe les paquets à installer par tâches (ex. serveur LAMP, création
+audio, etc).</p>
+<p>On peut alors utiliser <em>tasksel</em> pour rajouter
+<strong>MATE</strong> Grace a la ligne :</p>
+<pre><code>tasksel tasksel/first multiselect standard mate-desktop</code></pre>
+<h3 id="paquets-supplementaires">Paquets supplementaires</h3>
+<p>Evidemment une commande existe pour l’ajoute de “<em>paquet</em>
+supplementaires, ou tout autres programmes nécessaire. </br></p>
+<p><a
+href="https://www.debian.org/releases/stretch/mips/apbs04.html.fr"><em>pkgsel</em></a>
+fonctionne comme <em>tasksel</em>, mais pour les paquets.</p>
+<p>Ici nous avons besoins de : - Sudo <em>(sinon la gestion sudo est
+inutile)</em> - Git - Sqlite3 - Curl - Bash-completions - Neofetch</p>
+<p>Il nous suffit simplement d’ajouter ce dont nous avont besoin a la
+suite de :</p>
+<pre><code>d-i pkgsel/include string </code></pre>
+<p>Ce qui donne :</p>
+<pre><code>d-i pkgsel/include string sudo git sqlite3 curl bash-completion neofetch</code></pre>
+<h3 id="conclusion">Conclusion</h3>
+<p>Au final nous en avons apprit sur Debian et son histoire. Mais nous
+avons aussi apprit à configurer une installation Debian, et a
+l’automatiser en modifiant <strong>pressed.cfg</strong> . Ce qui donne
+:</p>
+<figure>
+<img src="img/Capture19.png" alt="Commandes ajoutées a pressed.cfg" />
+<figcaption aria-hidden="true">Commandes ajoutées a
+pressed.cfg</figcaption>
+</figure>
+<p><br> <br></p>
+<h1 id="rapport-semaine-8">Rapport semaine 8</h1>
+<hr />
+<p><em>Dans cette partie de rapport, nous parlerons de comment
+fonctionne l’utilmisation de Gitea sur une machine virtuelle</em></p>
+<h2 id="préliminaires.">1 - Préliminaires.</h2>
+<hr />
+<p><em>Précédemment, nous avons installé plein de services nécessaires à
+cette partie de la Saé, nous avons donc une machine virtuelle avec une
+Debian 11.6 avec au moins mate-desktop, git, et sqlite3 installé
+</em></p>
+<h3 id="configuration-globale-de-git.">1.1. Configuration globale de
+git.</h3>
+<p>Git est installé mais il n’est pas configuré, pour le configurer il
+faut :</p>
+<ol type="1">
+<li>Configurer le Prénom et le Nom</li>
+<li>Configurer l’email</li>
+<li>Configurer la branch git</li>
+</ol>
+<p>Pour ceci nous entrons les commandes :</p>
+<pre><code> git config --global user.name &quot;Prénom Nom&quot; 
+ git config --global user.email &quot;votre@email&quot; 
+ git config --global init.defaultBranch &quot;master&quot;  </code></pre>
+<p>Par la suite nous aurons besoin de git-gui et gitk<br />
+Mais d’abord il est intéressant de se questionner sur leurs
+fonctionnement :</p>
+<ul>
+<li>Qu’est-ce que le logiciel gitk ?</li>
+</ul>
+<p><a
+href="https://www.atlassian.com/fr/git/tutorials/gitk#:~:text=gitk%20est%20un%20navigateur%20de,tous%20les%20syst%C3%A8mes%20d&#39;exploitation.">Gitk</a>
+est un navigateur de dépôt graphique. Il peut être considéré comme un
+encapsuleur graphique pour git log . Il permet d’explorer et de
+visualiser l’historique d’un dépôt.</p>
+<ul>
+<li>Comment se lance-t-il ?</li>
+</ul>
+<p>L’exécution de la commande <strong><em>gitk</em></strong>* lancera
+l’interface utilisateur de <strong>gitk</strong>, dans le terminal</p>
+<p><img src="img/Capture20.png" /></p>
+<ul>
+<li>Qu’est -ce que le logiciel git-gui ?</li>
+</ul>
+<p>C’est un interface graphique permettant d’utiliser git, de façon plus
+accessoble</p>
+<ul>
+<li>Comment se lance-il</li>
+</ul>
+<p>Pour lancer Git gui, il y a plusieurs possibilités. Soit en ligne de
+ccommande :<br />
+git gui soit, sous debian via le menu alt+F2, puis ecrire
+<strong><em>git gui</em></strong>.</p>
+<p>Pour installer git gui, on peut simplement utiliser apt : <img
+src="img/Capture21.png" /></p>
+<h1 id="rapport-semaine-10">Rapport semaine 10</h1>
+<hr />
+<p><em>Dans cette partie de rapport, nous parlerons de comment
+fonctionne l’utilmisation de Gitea sur une machine virtuelle</em></p>
+<h2 id="préliminaires.-1">1 - Préliminaires.</h2>
+<hr />
+<p><em>Précédemment, nous avons installé plusieurs services nécessaires
+à cette partie de la Saé, nous avons donc une machine virtuelle avec
+Debian 11 et au moins mate-desktop, git, et sqlite3 installé </em></p>
+<p>Ici, nous nous intéresserons donc à l’installation de Gitea (voir
+section 2)</p>
+<h2 id="linstallation-de-gitea.">2 - L’installation de Gitea.</h2>
+<hr />
+<p>Tout d’abord, renseignons-nous sur le service Gitea</p>
+<ul>
+<li>Qu’est-ce que Gitea ?</li>
+</ul>
+<p>Gitea est un service Git auto-hébergé très simple à installer et à
+utiliser. Il est similaire à GitHub, Bitbucket ou Gitlab. Le but de ce
+projet est de fournir de la manière la plus simple, la plus rapide et
+sans complication un service Git auto-hébergé, fonctionnant sur toutes
+les plateformes , y compris Linux, macOS et Windows, même sur des
+architectures comme ARM ou PowerPC. [source
+:https://docs.gitea.io/fr-fr/]</p>
+<ul>
+<li>À quels logiciels bien connus dans ce domaine peut-on le comparer
+(en citer au moins 2) ?</li>
+</ul>
+<p>Gitea peut être comparé à :</p>
+<ul>
+<li>Github</li>
+<li>Bitbucket</li>
+<li>Gitlab</li>
+</ul>
+<h3 id="installation-de-gitea">2.1 Installation de Gitea</h3>
+<p>Gitea n’est pas installable sous forme de paquet debian mais il est
+quand même assez simple via de multiples solutions décrites dans la
+documentation [https://docs.gitea.io/] :</p>
+<ol type="1">
+<li>compilation des sources</li>
+<li>récupération d’un binaire précompilé (utilisé ici)</li>
+<li>via Docker</li>
+</ol>
+<p>Nous allons donc installer Gitea avec un binaire précompilé.</p>
+<h3 id="installation-du-binaire">2.1.1 Installation du binaire</h3>
+<p>Un site officiel [https://docs.gitea.io/en-us/install-from-binary/]
+permet de suivre cette installation en plusieurs étapes</p>
+<p>Pour telecharger Gitea, la version de git doit être supérieure ou
+égale à 2.0, pour connaître la notre il faut faire git –version, ici git
+est suffisamment à jour</p>
+<p><img src="img/Capture22.png" /></p>
+<p>Il y a plusieurs façons de faire ce téléchargement:</p>
+<ul>
+<li>soit en téléchargeant le fichier depuis le site, plusieurs version
+sont disponibles</li>
+</ul>
+<p><img src="img/Capture23.png" /> <img src="img/Capture24.png" /></p>
+<ul>
+<li>Soit en utilisant la commande
+wget[https://debian-facile.org/doc:reseau:wget], qui fera une
+installation automatique selon la version demandé, ici nous utiliserons
+la version 1.21.7 .</li>
+</ul>
+<p><strong>wget -O gitea
+https://dl.gitea.com/gitea/1.21.7/gitea-1.21.7-linux-amd64</strong></p>
+<p><strong>chmod +x gitea</strong></p>
+<p><img src="img/Capture25.png" /></p>
+<p>Cette installation a donc créé un fichier “gitea”, dans le fichier de
+l’utilisateur courant</p>
+<p><img src="img/Capture26.png" /></p>
+<p>Il est important de vérifier que l’installation est bien faite, nous
+allons vérifier la Signature GPG
+[https://doc.ubuntu-fr.org/gnupg#:~:text=GPG%20est%20l’acronyme%20de,vous%20%C3%A0%20la%20page%20Seahorse.],
+pour cela il faut utiliser les commandes</p>
+<p><strong>gpg –keyserver keys.openpgp.org –recv
+7C9E68152594688862D62AF62D9AE806EC1592E2</strong></p>
+<p><strong>gpg –verify gitea-1.21.7-linux-amd64.asc
+gitea-1.21.7-linux-amd64</strong></p>
+<p><img src="img/Capture27.png" /></p>
+<p>gitea pour démarrer, auras besoin d’un utilisateur qui pourra le
+démarrer, nous allons créer un utilisateur qui s’appelle “gitea” avec le
+mot de passe “gitea” et l’email “git@localhost”.</p>
+<p><img src="img/Capture28.png" /></p>
+<p>Ainsi que son répertoire ainsi que les accès à celui ci</p>
+<p><img src="img/Capture29.png" /></p>
+<p>Et enfin l’export et la copie de ce répertoire, pour en faire la
+configuration</p>
+<p><img src="img/Capture30.png" /></p>
+<p>A partir de maintenant, Gitea est fonctionnel est utilisable, nous
+devons utiliser l’utilisateur précédemment créé pour le lancer</p>
+<h3 id="mise-à-jour-du-binaire-du-service-gitea">2.1.2 Mise à jour du
+binaire du service Gitea</h3>
+<ul>
+<li>Quelle version du binaire avez-vous installé ? Donnez la version et
+la commande permettant d’obtenir cette information.</li>
+</ul>
+<p>La version de Gitea actuellement installée est la version 1.21.7,
+nous pouvons vérifier la version via la commande</p>
+<p><strong>gitea -v</strong></p>
+<ul>
+<li>Comment faire pour mettre à jour le binaire de votre service sans
+devoir tout reconfigurer ? Essayez en mettant à jour vers la version
+1.22-dev.</li>
+</ul>
+<p>Le site officiel nous guide pour la mise a jour de
+Gitea[https://docs.gitea.io/en-us/upgrade-from-gitea/]</p>
+<p>Nous nous intéresserons à la mise a jour avec un Gitea en fichier
+binaire, il faut :</p>
+<ul>
+<li>Téléchargez le binaire de Gitea pour la version 1.22-dev dans un
+répertoire temporaire.</li>
+<li>Arrêtez l’instance en cours d’exécution, sauvegardez les
+données.</li>
+<li>Remplacez le binaire Gitea installé par celui téléchargé.</li>
+<li>Remplacez le binaire Gitea installé par celui téléchargé.</li>
+</ul>
+<p>Et voilà, notre Gitea est à jour.</p>
+</body>
+</html>
